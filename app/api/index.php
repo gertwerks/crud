@@ -40,19 +40,6 @@ function getUsers() {
 	}
 }
 
-function getProducts() {
-	$sql = "select * FROM products ORDER BY id";
-	try {
-		$db = getConnection();
-		$stmt = $db->query($sql);  
-		$products = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$db = null;
-		echo json_encode($products);
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-}
-
 function getUser($id) {
 	$sql = "SELECT * FROM users WHERE id=:id";
 	try {
@@ -89,24 +76,6 @@ function addUser() {
 	}
 }
 
-function addProduct() {
-	$request = Slim::getInstance()->request();
-	$products = json_decode($request->getBody());
-	$sql = "INSERT INTO products (img, productname, productdetails) VALUES (:img, :productname, :productdetails)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("img", $products->img);
-		$stmt->bindParam("productname", $products->productname);
-		$stmt->bindParam("productdetails", $products->productdetails);
-		$stmt->execute();
-		$products->id = $db->lastInsertId();
-		$db = null;
-		echo json_encode($products); 
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-}
 
 function updateUser($id) {
 	$request = Slim::getInstance()->request();
@@ -154,6 +123,38 @@ function findByName($query) {
 		$users = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
 		echo '{"user": ' . json_encode($users) . '}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function getProducts() {
+	$sql = "select * FROM products ORDER BY id";
+	try {
+		$db = getConnection();
+		$stmt = $db->query($sql);  
+		$products = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+		echo json_encode($products);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function addProduct() {
+	$request = Slim::getInstance()->request();
+	$products = json_decode($request->getBody());
+	$sql = "INSERT INTO products (img, productname, productdetails) VALUES (:img, :productname, :productdetails)";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("img", $products->img);
+		$stmt->bindParam("productname", $products->productname);
+		$stmt->bindParam("productdetails", $products->productdetails);
+		$stmt->execute();
+		$products->id = $db->lastInsertId();
+		$db = null;
+		echo json_encode($products); 
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}

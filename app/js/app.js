@@ -6,8 +6,6 @@ var app = angular.module('myApp', [
     'ngResource',
     'ngRoute',
     'myApp.controllers',
-    'myApp.directives',
-    'myApp.filters',
     'myApp.services' 
 ]);
 
