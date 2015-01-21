@@ -20,7 +20,7 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/user/edit/:id',     { templateUrl: 'views/user-edit.html', controller: 'UserController', title: 'Edit User' })                                                                             
         .when('/user/view/:id',     { templateUrl: 'views/user-view.html', controller: 'UserController', title: 'View User' })   
         .when('/products',                  { templateUrl: 'views/products.html', controller: 'ProductController', title: 'Products' })  
-        .when('/products/create',       { templateUrl: 'views/product-create.html', controller: 'ProductController', title: 'Create User' })      
+        .when('/products/create',       { templateUrl: 'views/product-create.html', controller: 'AddProductController', title: 'Add Product' })      
         .otherwise({ redirectTo:'/' });
         
     // Removes the # in urls

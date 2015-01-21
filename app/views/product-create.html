@@ -1,25 +1,20 @@
 <h1>Add Product</h1>
     
-<form name="productForm" role="form" novalidate>
-
-     <div class="form-group">
-        <label for="img-link" class="control-label">Image Link:</label>
-        <input type="text" ng-model="product.img" name="img" placeholder="img link" class="form-control">
-    </div>    
+<form name="productForm" role="form" novalidate>  
       <div class="form-group">
         <label for="productname" class="control-label">Product Name</label>
-        <input type="text" ng-model="product.productname" name="productname" placeholder="Product Name" class="form-control">
+        <input type="text" ng-model="product.productname" name="productname" placeholder="Product Name" class="form-control" required>
     </div>  
      <div class="form-group">
-        <label for="productdescription" class="control-label">Product Description</label>
-        <input type="text" ng-model="product.productdescription" name="productdetails" placeholder="Product Details" class="form-control">
+        <label for="productdetails" class="control-label">Product Description</label>
+        <input type="text" ng-model="product.productdetails" name="productdetails" placeholder="Product Details" class="form-control" required>
     </div>  
 
 
    
     <br>
     
-    <button ng-click="addProduct()" ng-class="{ disabled: productForm.$invalid }" class="btn btn-primary">Save</button>
+    <button ng-click="addProduct()" class="btn btn-primary">Save</button>
     <button ng-click="goBack()" class="btn btn-default pull-right">
         <span class="glyphicon glyphicon-arrow-left"></span> Back
     </button>    

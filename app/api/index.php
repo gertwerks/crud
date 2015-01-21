@@ -15,6 +15,10 @@ $app->delete('/users/:id', 'deleteUser');
 $app->get('/products', 'getProducts');
 $app->post('/products', 'addProduct');
 
+$app->get('/products/:id', 'getProduct');
+$app->put('/products/:id', 'updateProduct');
+$app->delete('/products/:id', 'deleteProduct');
+
 $app->run();
 
 function getConnection() {
@@ -57,7 +61,8 @@ function getUser($id) {
 
 function addUser() {
 	$request = Slim::getInstance()->request();
-	$user = json_decode($request->getBody());
+	$body = $request->getBody();
+	$user = json_decode($body);
 	$sql = "INSERT INTO users (firstname, lastname, email, grades, img) VALUES (:firstname, :lastname, :email, :grades, :img)";
 	try {
 		$db = getConnection();
@@ -143,12 +148,12 @@ function getProducts() {
 
 function addProduct() {
 	$request = Slim::getInstance()->request();
-	$products = json_decode($request->getBody());
-	$sql = "INSERT INTO products (img, productname, productdetails) VALUES (:img, :productname, :productdetails)";
+	$body = $request->getBody();
+	$products = json_decode($body);
+	$sql = "INSERT INTO products (productname, productdetails) VALUES (:productname, :productdetails)";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("img", $products->img);
 		$stmt->bindParam("productname", $products->productname);
 		$stmt->bindParam("productdetails", $products->productdetails);
 		$stmt->execute();
@@ -156,7 +161,9 @@ function addProduct() {
 		$db = null;
 		echo json_encode($products); 
 	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		http_response_code(500);
+		echo json_encode(['error' => ['text' => $e->getMessage()]]);
 	}
 }
 

@@ -1,7 +1,18 @@
 /* The html and body elements cannot have any padding or margin */
 html,
 body {
-    height: 100%; /* for sticky footer */
+    height: 100%; /* for sticky footer */     
+    
+    background: url("http://img1.wikia.nocookie.net/__cb20141012210549/logopedia/images/a/ae/DC_Comics_On_Screen_2014_Gotham.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+   
+}
+
+h1 {
+    color: #fff;   
 }
 
 /* Wrapper for page content to push down footer */
@@ -33,7 +44,110 @@ a.glyphicon {
 }
 
 .pull-up { margin: -45px 0 15px 0 }
+.users-container {
+    width:500px;
+    margin: 20px auto;
+}
+.user-container {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #F0F0F0;
+    border-radius: 7px;
+    margin: 15px 0px 15px 0px;
+    background: rgba(255, 255, 255, 0.86);
+
+}
 
 .user-thumb {
-    width:100px;
+    width: 186px;
+    /* position: absolute; */
+    /* z-index: 0; */
+    margin-left: -39px;
+    /* margin-top: 2px; */
+}
+
+img.user-thumb {}
+
+.user-img {
+    float: left;
+    width: 98px;
+    height: 95px;
+    border-radius: 50px;
+    -webkit-border-radius: 66px;
+    -moz-border-radius: 50px;
+    overflow: hidden;
+    margin: 23px 30px 14px 14px;
+    box-shadow: 0px 2px 3px #999999;
+}
+
+.user-img {}
+
+.user-info {
+    padding: 30px 0px 20px 20px;
+    font-size: 19px;
+   /* font-weight: lighter;*/
+}
+
+.user-id {
+    position: absolute;
+
+}
+
+.first-name {
+
+}
+
+.last-name {
+
+}
+
+.grades {
+
+}
+
+.button-panel {
+    position: absolute;
+    right:0px;
+    top:0px;
+}
+
+.user-button {
+    display: block;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 5px 10px;
+    box-shadow: 0px 2px 3px #999999;
+    padding: 12px 0px 0px 13px;
+}
+
+.user-button:hover{
+      box-shadow: 0px 2px 5px rgb(168, 186, 168);
+       font-size: 16px;
+       padding: 10px 0px 0px 12px;
+       text-decoration: none;
+}
+
+.create-button {
+    margin-top:23px;
+}
+
+.navbar {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+  s
+}
+
+.navbar-header {
+    width: 100%;
+    padding-top:15px;
+
+}
+
+.navbar-brand {
+    float: none;
+
 }
